@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Interfaces.Entradas.PendientesFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pendientes_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            style="@style/TextField"
+            android:textColor="@color/blanco"
+            android:text="@string/entradas_rv_cabecera"
+            />
+
+        <View
+            android:id="@+id/pendientes_separador_titulo"
+            android:layout_below="@id/pendientes_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/blanco" />
+
+        <LinearLayout
+            android:id="@+id/pendientes_columnas"
+            android:layout_below="@id/pendientes_separador_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                style="@style/TextField"
+                android:textColor="@color/blanco"
+                android:text="@string/entradas_rv_pdtes_col1"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blanco" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                style="@style/TextField"
+                android:textColor="@color/blanco"
+                android:text="@string/entradas_rv_pdtes_col2"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blanco" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                style="@style/TextField"
+                android:textColor="@color/blanco"
+                android:text="@string/entradas_rv_pdtes_col3"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blanco" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                style="@style/TextField"
+                android:textColor="@color/blanco"
+                android:text="@string/entradas_rv_pdtes_col4"
+                />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pendientes_rv"
+            android:layout_below="@id/pendientes_columnas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/verdeBebe"/>
+    </RelativeLayout>
+</FrameLayout>

@@ -30,5 +30,13 @@
             android:singleLine="true"
             android:summary="Introduzca clave de autenticación"
             android:title="@string/autenticacion" />
+
+        <EditTextPreference
+            app:iconSpaceReserved="false"
+            android:key="@string/setting_serie_compra"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Introduzca código del contador para albarán de compra"
+            android:title="@string/serie_compra" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -11,9 +11,46 @@
         <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
+    <style name="ButtonTopLeftEdgeCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopLeft">14dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="ButtonBottomLeftEdgeCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">14dp</item>
+    </style>
+
+    <style name="ButtonBottomRightEdgeCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">14dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
     <style name="Widget.AppTheme.TextInputLayout.FilledBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
         <item name="boxStrokeColor">@color/blanco</item>
         <item name="hintTextColor">@color/blanco</item>
         <item name="colorControlActivated">@color/blanco</item>
     </style>
+
+    <style name="TextField" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">9pt</item>
+        <item name="android:textColor">@color/negro</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">@color/gris</item>
+    </style>
+
+    <style name="AppBarMenu" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppBarMenuPopUp" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

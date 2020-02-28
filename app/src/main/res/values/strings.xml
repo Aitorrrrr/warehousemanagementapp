@@ -1,16 +1,63 @@
 <resources>
-    <string name="app_name">SSMWarehouseManagementApp</string>
+    <string name="app_name">Warehouse Management</string>
 
+    <!-- Pantalla LogInFragment -->
     <string name="tittle">Warehouse Management</string>
     <string name="usuario">Usuario</string>
     <string name="contrasenya">Contraseña</string>
     <string name="acceder">Acceder</string>
+    <string name="configuracion">Configuración</string>
 
+    <!-- Pantalla SettingsFragment -->
     <string name="ip">IP</string>
     <string name="puerto">Puerto</string>
     <string name="autenticacion">Autenticación</string>
+    <string name="serie_compra">Código contador albaranes de compra</string>
 
     <string name="setting_ip">ip</string>
     <string name="setting_puerto">puerto</string>
     <string name="setting_auten">autenticacion</string>
+    <string name="setting_serie_compra">serieCompra</string>
+
+    <!-- Nombres de los métodos de la API y nodos -->
+    <string name="autenticarHeader">X-API-KEY</string>
+    <string name="autenticar">Autenticar</string>
+
+    <!-- Pantalla MenuFragment -->
+    <string name="nav_header_correo">soporte@simlevante.com</string>
+    <string name="nav_menu_cabecera1">Almacén</string>
+    <string name="nav_menu_cab1_item1">Entradas</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_logosim">Logo SIM Levante</string>
+
+    <!-- Pantalla EntradasFragment -->
+    <string name="entradas_lblTitulo">Albarán de compra</string>
+    <string name="entradas_lblPedidoProv">Nº Pedido Prov</string>
+    <string name="entradas_lblAlbaranProv">Nº Albarán Prov</string>
+    <string name="entradas_lblNombreProv">Nombre Proveedor</string>
+    <string name="entradas_btnAceptar">Confirmar operación</string>
+    <string name="entradas_btnAnyadirProd">Añadir producto</string>
+    <string name="entradas_btnConsultarPdtes">Consultar pdtes.</string>
+    <string name="entradas_rv_col1">Código producto</string>
+    <string name="entradas_rv_col2">Uds.</string>
+    <string name="entradas_intercambio_movCreado">movimientosCreados</string>
+    <string name="entradas_intercambio_movBorrar">movimientoBorrar</string>
+    <string name="entradas_intercambio_movUdsIncorp">unidadesIncorporar</string>
+
+    <!-- Pantalla ProductoFragment -->
+    <string name="anyadirProducto_lblTitulo">Nuevo producto</string>
+    <string name="anyadirProducto_lblCodProd">Cod. Prod.</string>
+    <string name="anyadirProducto_lblDescripcionProd">Descripción de producto</string>
+    <string name="anyadirProducto_lblUdsPedido">Uds. Pedido</string>
+    <string name="anyadirProducto_lblUdsRecibidas">Uds. Recibidas</string>
+
+    <!-- Pantalla PendientesFragment RecyclerView -->
+    <string name="entradas_rv_cabecera">Relación de líneas pendientes</string>
+    <string name="entradas_rv_pdtes_col1">Codbar</string>
+    <string name="entradas_rv_pdtes_col2">Descripción</string>
+    <string name="entradas_rv_pdtes_col3">Uds.</string>
+    <string name="entradas_rv_pdtes_col4">Inc.</string>
+
+
 </resources>

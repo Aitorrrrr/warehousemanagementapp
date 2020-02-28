@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Interfaces.Entradas.EntradasFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/verdeBebe"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/entradas_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12pt"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="6dp"
+            android:background="@color/colorPrimary"
+            style="@style/TextField"
+            android:text="@string/entradas_lblTitulo"/>
+
+        <LinearLayout
+            android:layout_below="@+id/entradas_titulo"
+            android:id="@+id/entradas_linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_gravity="center_vertical"
+                android:text="@string/entradas_lblPedidoProv"
+                style="@style/TextField"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/entradas_pedidoProv_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/entradas_linear2"
+            android:layout_below="@id/entradas_linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:layout_gravity="center_vertical"
+                android:text="@string/entradas_lblAlbaranProv"
+                style="@style/TextField"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/entradas_albaranProv_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/entradas_nombreProv_layout"
+            android:layout_below="@id/entradas_linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:enabled="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/entradas_nombreProv_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:fontFamily="sans-serif"
+                android:hint="@string/entradas_lblNombreProv"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/entradas_anyadirProducto"
+            android:layout_below="@id/entradas_nombreProv_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:shapeAppearance="@style/ButtonTopLeftEdgeCut"
+            style="@style/Button"
+            android:text="@string/entradas_btnAnyadirProd"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/entradas_consultarPdtes"
+            android:layout_marginStart="12dp"
+            android:layout_below="@id/entradas_anyadirProducto"
+            app:strokeColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shapeAppearance="@style/ButtonBottomLeftEdgeCut"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/entradas_btnConsultarPdtes"/>
+
+        <LinearLayout
+            android:id="@+id/entradas_cabecera_recycler"
+            android:layout_below="@id/entradas_consultarPdtes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:paddingStart="3dp"
+                android:background="@color/colorPrimary"
+                style="@style/TextField"
+
+                android:text="@string/entradas_rv_col1"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/blanco"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:gravity="center_horizontal"
+                style="@style/TextField"
+                android:background="@color/colorPrimary"
+                android:text="@string/entradas_rv_col2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/border"
+            android:layout_marginEnd="12dp"
+            android:layout_below="@+id/entradas_cabecera_recycler"
+            android:layout_above="@+id/entradas_aceptarOperacion">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/entradas_movimientos_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/entradas_aceptarOperacion"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Button"
+            app:shapeAppearance="@style/ButtonBottomRightEdgeCut"
+            android:text="@string/entradas_btnAceptar"/>
+    </RelativeLayout>
+</FrameLayout>

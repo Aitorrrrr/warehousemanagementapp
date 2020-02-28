@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/nav_menu_cabecera1">
+        <menu>
+            <item
+                android:id="@+id/nav_menu_entradas"
+                android:icon="@drawable/entradas"
+                android:title="@string/nav_menu_cab1_item1"
+                />
+        </menu>
+    </item>
+</menu>
