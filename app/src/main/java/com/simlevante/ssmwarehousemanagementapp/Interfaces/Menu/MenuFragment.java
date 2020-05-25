@@ -1,7 +1,9 @@
 package com.simlevante.ssmwarehousemanagementapp.Interfaces.Menu;
 
-import android.content.Context;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,11 +14,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import android.view.Gravity;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.simlevante.ssmwarehousemanagementapp.Helpers.NavigationHost;
@@ -26,6 +29,7 @@ import com.simlevante.ssmwarehousemanagementapp.R;
 public class MenuFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private ImageView iv;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
 
@@ -53,6 +57,7 @@ public class MenuFragment extends Fragment implements NavigationView.OnNavigatio
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        iv = v.findViewById(R.id.menu_contenido_imageview);
         drawer = v.findViewById(R.id.menu_layout);
         toggle = new ActionBarDrawerToggle(getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -60,6 +65,8 @@ public class MenuFragment extends Fragment implements NavigationView.OnNavigatio
 
         navigationView = v.findViewById(R.id.menu_navigation_drawer);
         navigationView.setNavigationItemSelectedListener(this);
+
+        iv.setBackground(resizeImage(R.drawable.fabric_wallpaper));
 
         return v;
     }
@@ -85,5 +92,34 @@ public class MenuFragment extends Fragment implements NavigationView.OnNavigatio
         }
 
         return retorno;
+    }
+
+    public Drawable resizeImage(int imageResource)
+    {
+        // Get device dimensions
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        double deviceWidth = displaymetrics.widthPixels;
+
+        BitmapDrawable bd = (BitmapDrawable) this.getResources().getDrawable(
+                imageResource,null);
+        double imageHeight = bd.getBitmap().getHeight();
+        double imageWidth = bd.getBitmap().getWidth();
+
+        double ratio = deviceWidth / imageWidth;
+        int newImageHeight = (int) (imageHeight * ratio);
+
+        Bitmap bMap = BitmapFactory.decodeResource(getResources(), imageResource);
+        Drawable drawable = new BitmapDrawable(this.getResources(),
+                getResizedBitmap(bMap, newImageHeight, (int) deviceWidth));
+
+        return drawable;
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int bitmapWidth,
+                                   int bitmapHeight)
+    {
+        return Bitmap.createScaledBitmap(image, bitmapWidth, bitmapHeight,
+                true);
     }
 }

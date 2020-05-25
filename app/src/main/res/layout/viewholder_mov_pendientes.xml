@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_margin="8dp"
     app:cardCornerRadius="6dp"
+    android:backgroundTint="@color/verdeSIMBebe"
     app:cardElevation="6dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -22,7 +23,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/negro"
+            android:background="@color/blanco"
             android:layout_marginRight="5dp"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -34,7 +35,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/negro"
+            android:background="@color/blanco"
             android:layout_marginRight="5dp"/>
 
         <com.google.android.material.textview.MaterialTextView
@@ -46,7 +47,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/negro"
+            android:background="@color/blanco"
             android:layout_marginRight="5dp"/>
 
         <com.google.android.material.textview.MaterialTextView

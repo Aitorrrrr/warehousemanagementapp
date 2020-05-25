@@ -373,7 +373,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
 
                     if (proveedorOperacion.getNif() == null)
                     {
-                        ((ToastHost) getActivity()).toast("Operación origen no encontrada.");
+                        ((ToastHost) getActivity()).toast("Operación origen no encontrada o en uso.");
                         cancelarOperacion(1);
                     }
                     else
@@ -559,7 +559,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call<Operacion> call, Throwable t)
                 {
-                    ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                    ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                     progressDoalog.dismiss();
                 }
             });
@@ -620,7 +620,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call<Operacion> call, Throwable t)
                 {
-                    ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                    ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                     progressDoalog.dismiss();
                 }
             });
@@ -684,7 +684,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call<ArrayList<Movimiento>> call, Throwable t)
                 {
-                    ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                    ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                     progressDoalog.dismiss();
                 }
             });
@@ -777,7 +777,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onFailure(Call<RespuestaDto> call, Throwable t)
                     {
-                        ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                        ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                         progressDoalog.dismiss();
                     }
                 });
@@ -818,10 +818,26 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
     private void preferencias()
     {
         SharedPreferences userPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-        ip = userPreferences.getString(getResources().getString(R.string.setting_ip),null);
-        puerto = userPreferences.getString(getResources().getString(R.string.setting_puerto),null);
-        autenticacion = userPreferences.getString(getResources().getString(R.string.setting_auten),null);
-        contadorAlb = userPreferences.getString(getResources().getString(R.string.setting_serie_compra),null);
+        ip = userPreferences.getString(getResources().getString(R.string.setting_ip),"");
+        puerto = userPreferences.getString(getResources().getString(R.string.setting_puerto),"");
+        autenticacion = userPreferences.getString(getResources().getString(R.string.setting_auten),"");
+        contadorAlb = userPreferences.getString(getResources().getString(R.string.setting_serie_compra),"");
+
+        if (ip.isEmpty())
+        {
+            ((ToastHost) getActivity()).toast("Parámetro IP vacío.");
+            return;
+        }
+        if (puerto.isEmpty())
+        {
+            ((ToastHost) getActivity()).toast("Parámetro puerto vacío.");
+            return;
+        }
+        if (autenticacion.isEmpty())
+        {
+            ((ToastHost) getActivity()).toast("Parámetro palabra de autenticación vacío.");
+            return;
+        }
     }
 
     private void bloquearOperacion(int bloquear, double numero)
@@ -880,7 +896,7 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<RespuestaDto> call, Throwable t)
             {
-                ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                 progressDoalog.dismiss();
             }
         });

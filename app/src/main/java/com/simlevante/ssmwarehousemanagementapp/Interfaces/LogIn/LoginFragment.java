@@ -3,6 +3,10 @@ package com.simlevante.ssmwarehousemanagementapp.Interfaces.LogIn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -17,9 +21,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.simlevante.ssmwarehousemanagementapp.Helpers.Http.HeaderInterceptor;
 import com.simlevante.ssmwarehousemanagementapp.Helpers.Http.JsonPlaceHolderApi;
@@ -29,14 +36,13 @@ import com.simlevante.ssmwarehousemanagementapp.Interfaces.Menu.MenuFragment;
 import com.simlevante.ssmwarehousemanagementapp.Models.Usuario;
 import com.simlevante.ssmwarehousemanagementapp.R;
 
-import java.util.ArrayList;
-
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private AppCompatEditText usuario;
     private AppCompatEditText password;
     private AppCompatImageButton settings;
     private AppCompatButton acceder;
+    private ImageView iv;
 
     private SettingsFragment settingsFragment;
     private MenuFragment menuFragment;
@@ -61,6 +67,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
+        iv = v.findViewById(R.id.login_imageview);
+
         usuario = v.findViewById(R.id.login_usuario_et);
         password = v.findViewById(R.id.login_password_et);
 
@@ -69,6 +77,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         acceder = v.findViewById(R.id.login_acceder);
         acceder.setOnClickListener(this);
+
+        iv.setBackground(resizeImage(R.drawable.fabric_wallpaper));
 
         return v;
     }
@@ -125,6 +135,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         if (ip != null && puerto != null && autenticacion != null)
         {
+            if (ip.isEmpty())
+            {
+                ((ToastHost) getActivity()).toast("Parámetro IP vacío.");
+                return;
+            }
+            if (puerto.isEmpty())
+            {
+                ((ToastHost) getActivity()).toast("Parámetro puerto vacío.");
+                return;
+            }
+            if (autenticacion.isEmpty())
+            {
+                ((ToastHost) getActivity()).toast("Parámetro palabra de autenticación vacío.");
+                return;
+            }
+
             OkHttpClient cliente = new OkHttpClient.Builder()
                     .addInterceptor(new HeaderInterceptor(autenticacion))
                     .build();
@@ -173,9 +199,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onFailure(Call<Usuario> call, Throwable t)
                 {
-                    ((ToastHost) getActivity()).toast("Parametros de conexión incorrectos o servidor no disponible.");
+                    ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o servidor no disponible.");
                 }
             });
+        }
+        else
+        {
+            ((ToastHost) getActivity()).toast("Parámetros de conexión incorrectos o incompletos.");
         }
     }
 
@@ -203,5 +233,34 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     public interface GuardarUsuario {
         void guardarUsuario(String Usuario);
+    }
+
+    public Drawable resizeImage(int imageResource)
+    {
+        // Get device dimensions
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        double deviceWidth = displaymetrics.widthPixels;
+
+        BitmapDrawable bd = (BitmapDrawable) this.getResources().getDrawable(
+                imageResource,null);
+        double imageHeight = bd.getBitmap().getHeight();
+        double imageWidth = bd.getBitmap().getWidth();
+
+        double ratio = deviceWidth / imageWidth;
+        int newImageHeight = (int) (imageHeight * ratio);
+
+        Bitmap bMap = BitmapFactory.decodeResource(getResources(), imageResource);
+        Drawable drawable = new BitmapDrawable(this.getResources(),
+                getResizedBitmap(bMap, newImageHeight, (int) deviceWidth));
+
+        return drawable;
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int bitmapWidth,
+                                   int bitmapHeight)
+    {
+        return Bitmap.createScaledBitmap(image, bitmapWidth, bitmapHeight,
+                true);
     }
 }

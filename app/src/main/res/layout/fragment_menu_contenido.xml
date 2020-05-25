@@ -9,19 +9,25 @@
     tools:context=".Interfaces.Menu.MenuFragment">
 
     <ImageView
+        android:id="@+id/menu_contenido_imageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:tint="#1F000000"
-        android:src="@drawable/green_garden"/>
+        android:alpha="1"
+        android:tint="#1F000000"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TextField"
+        android:shadowColor="@color/negro"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textSize="26sp"
+        android:fontFamily="sans-serif"
         android:layout_above="@+id/imageViewLogo"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/blancoPerla"
+        android:textColor="@color/verdeSIM"
         android:text="@string/app_name"/>
 
     <ImageView
@@ -30,5 +36,5 @@
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
         android:contentDescription="@string/menu_logosim"
-        android:src="@drawable/logo_sinfondo" />
+        android:src="@drawable/logo_n_sinfondo" />
 </RelativeLayout>

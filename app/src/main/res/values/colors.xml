@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!-- <color name="colorPrimary">#008577</color> -->
+    <!-- <color name="colorPrimaryDark">#00574B</color> -->
+    <color name="colorPrimary">#8CD600</color>
+    <color name="colorPrimaryDark">#689C00</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="blancoPerla">#eeebd9</color>
     <color name="blanco">#FFFFFF</color>
     <color name="gris">#B3B3B3</color>
     <color name="negro">#000000</color>
-    <color name="verdeBebe">#CEF7CD</color>
+    <color name="verdeSIMBebe">#D8FFB1</color>
     <color name="amarilloBebe">#F7F0BA</color>
+    <color name="transparente">#0000ffcc</color>
+
+    <color name="verdeSIM">#8CD600</color>
+    <color name="grisSIM">#63666A</color>
 </resources>

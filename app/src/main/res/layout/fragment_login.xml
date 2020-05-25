@@ -8,11 +8,11 @@
     tools:context=".Interfaces.LogIn.LoginFragment">
 
     <ImageView
+        android:id="@+id/login_imageview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scaleType="centerCrop"
-        android:tint="#1F000000"
-        android:src="@drawable/green_garden"/>
+        android:tint="#1F000000"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="sans-serif-thin"
-                android:textSize="12pt"
-                android:textColor="@color/blancoPerla"
+                android:fontFamily="sans-serif"
+                android:textSize="26dp"
+                android:textColor="@color/verdeSIM"
                 android:text="@string/tittle"
                 />
 
@@ -63,8 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorAccent"
-                    android:background="#000000FF"
+                    android:textColor="@color/blanco"
+                    android:background="#333333"
                     android:hint="@string/usuario"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/verdeSIM"
                 android:theme="@style/Widget.AppTheme.TextInputLayout.FilledBox.Dense"
                 style="@style/Widget.AppTheme.TextInputLayout.FilledBox.Dense"
                 android:layout_marginBottom="8dp">
@@ -82,9 +83,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/blanco"
                     android:hint="@string/contrasenya"
-                    android:background="#000000FF" />
+                    android:background="#333333" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

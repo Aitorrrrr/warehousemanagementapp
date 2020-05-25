@@ -8,7 +8,9 @@
     </style>
 
     <style name="Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/negro</item>
+        <item name="backgroundTint">@color/verdeSIM</item>
     </style>
 
     <style name="ButtonTopLeftEdgeCut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
@@ -36,15 +38,16 @@
     </style>
 
     <style name="Widget.AppTheme.TextInputLayout.FilledBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
-        <item name="boxStrokeColor">@color/blanco</item>
-        <item name="hintTextColor">@color/blanco</item>
-        <item name="colorControlActivated">@color/blanco</item>
+        <item name="boxStrokeColor">@color/verdeSIM</item>
+        <item name="hintTextColor">@color/verdeSIM</item>
+        <item name="colorControlActivated">@color/verdeSIM</item>
+        <item name="android:textColorHint">@color/verdeSIM</item>>
     </style>
 
     <style name="TextField" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textSize">9pt</item>
+        <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/negro</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:shadowDy">1</item>
         <item name="android:shadowDx">1</item>
         <item name="android:shadowRadius">1</item>

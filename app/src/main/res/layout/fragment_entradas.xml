@@ -9,20 +9,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/verdeBebe"
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/entradas_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12pt"
+            android:textSize="22dp"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:layout_marginBottom="10dp"
             android:elevation="6dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/verdeSIM"
             style="@style/TextField"
             android:text="@string/entradas_lblTitulo"/>
 
@@ -132,7 +131,7 @@
             android:layout_height="wrap_content"
             app:shapeAppearance="@style/ButtonBottomLeftEdgeCut"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-light"
             android:text="@string/entradas_btnConsultarPdtes"/>
 
         <LinearLayout
@@ -149,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:paddingStart="3dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/verdeSIM"
                 style="@style/TextField"
 
                 android:text="@string/entradas_rv_col1"/>
@@ -165,7 +164,7 @@
                 android:layout_weight="0.2"
                 android:gravity="center_horizontal"
                 style="@style/TextField"
-                android:background="@color/colorPrimary"
+                android:background="@color/verdeSIM"
                 android:text="@string/entradas_rv_col2"/>
         </LinearLayout>
 

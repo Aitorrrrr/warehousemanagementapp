@@ -33,8 +33,8 @@
 
     <!-- Pantalla EntradasFragment -->
     <string name="entradas_lblTitulo">Albarán de compra</string>
-    <string name="entradas_lblPedidoProv">Nº Pedido Prov</string>
-    <string name="entradas_lblAlbaranProv">Nº Albarán Prov</string>
+    <string name="entradas_lblPedidoProv">Nº Pedido Prov:</string>
+    <string name="entradas_lblAlbaranProv">Nº Albarán Prov:</string>
     <string name="entradas_lblNombreProv">Nombre Proveedor</string>
     <string name="entradas_btnAceptar">Confirmar operación</string>
     <string name="entradas_btnAnyadirProd">Añadir producto</string>
@@ -47,10 +47,10 @@
 
     <!-- Pantalla ProductoFragment -->
     <string name="anyadirProducto_lblTitulo">Nuevo producto</string>
-    <string name="anyadirProducto_lblCodProd">Cod. Prod.</string>
+    <string name="anyadirProducto_lblCodProd">Cod. Prod.:</string>
     <string name="anyadirProducto_lblDescripcionProd">Descripción de producto</string>
-    <string name="anyadirProducto_lblUdsPedido">Uds. Pedido</string>
-    <string name="anyadirProducto_lblUdsRecibidas">Uds. Recibidas</string>
+    <string name="anyadirProducto_lblUdsPedido">Uds. Pedido:</string>
+    <string name="anyadirProducto_lblUdsRecibidas">Uds. Recibidas:</string>
 
     <!-- Pantalla PendientesFragment RecyclerView -->
     <string name="entradas_rv_cabecera">Relación de líneas pendientes</string>

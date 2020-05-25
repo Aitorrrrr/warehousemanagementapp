@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
@@ -18,7 +19,10 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.method.MovementMethod;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +32,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.simlevante.ssmwarehousemanagementapp.Helpers.ToastHost;
 import com.simlevante.ssmwarehousemanagementapp.Models.Movimiento;
@@ -59,7 +66,8 @@ public class ProductoFragment extends Fragment implements View.OnClickListener {
     private int elegidoSelectorDialog = -1;
     private Movimiento movElegidoSelectorDialog;
 
-    public ProductoFragment() {
+    public ProductoFragment()
+    {
 
     }
 
@@ -129,6 +137,8 @@ public class ProductoFragment extends Fragment implements View.OnClickListener {
                 uds.setText(Double.toString(mov.getUnidades()));
                 desbloquearViews();
         });
+
+        codProd.requestFocus();
 
         return v;
     }
@@ -309,74 +319,86 @@ public class ProductoFragment extends Fragment implements View.OnClickListener {
     private void busquedaDescripcionContiene()
     {
         String aux = descripcion.getText().toString().trim();
-        String[] listaStrings = new String[movPdtes.size()];
+        String[] listaStrings;
         ArrayList<Movimiento> listaDescripcion = new ArrayList<>();
 
         if (aux.compareTo("") != 0)
         {
-            int i = 0;
             for (Movimiento movAux: movPdtes)
             {
                 if (movAux.getDenominaci().contains(aux))
                 {
-                    listaStrings[i] = movAux.getCodart();
                     listaDescripcion.add(movAux);
                 }
+            }
+
+            int i = 0;
+            listaStrings = new String[listaDescripcion.size()];
+            for (Movimiento movAux: listaDescripcion)
+            {
+                listaStrings[i] = "\n" + movAux.getCodart() + "   \uFEFF \nDesc: " + movAux.getDenominaci() + "\n";
 
                 i++;
             }
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Elija producto");
-
-            builder.setSingleChoiceItems(listaStrings, -1, (DialogInterface dialog, int which) ->
+            if (listaDescripcion.size() > 0)
             {
-               elegidoSelectorDialog = which;
-            });
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Elija producto");
 
-            builder.setPositiveButton("OK", (DialogInterface dialog, int which) ->
-            {
-                if (elegidoSelectorDialog >= 0)
+                builder.setSingleChoiceItems(listaStrings, -1, (DialogInterface dialog, int which) ->
                 {
-                    String codArt = listaStrings[elegidoSelectorDialog];
-                    for (Movimiento movAux: listaDescripcion)
+                    elegidoSelectorDialog = which;
+                });
+
+                builder.setPositiveButton("OK", (DialogInterface dialog, int which) ->
+                {
+                    if (elegidoSelectorDialog >= 0)
                     {
-                        if (movAux.getCodart().compareTo(codArt) == 0)
+                        String codArt = listaStrings[elegidoSelectorDialog];
+                        codArt = codArt.trim();
+                        codArt = codArt.substring(0,codArt.indexOf("\uFEFF"));
+                        codArt = codArt.trim();
+
+                        for (Movimiento movAux: listaDescripcion)
                         {
-                            movElegidoSelectorDialog = movAux;
+                            if (movAux.getCodart().compareTo(codArt) == 0)
+                            {
+                                movElegidoSelectorDialog = movAux;
+                            }
+                        }
+
+                        if (movElegidoSelectorDialog != null)
+                        {
+                            //codProd.setAdapter(null);
+                            codProd.setText(movElegidoSelectorDialog.getCodart());
+                            descripcion.setText(movElegidoSelectorDialog.getDenominaci());
+                            uds.setText(Double.toString(movElegidoSelectorDialog.getUnidades()));
+                            desbloquearViews();
                         }
                     }
+                });
+                builder.setNegativeButton("Cancel", (DialogInterface dialog, int which) ->
+                {
+                    elegidoSelectorDialog = -1;
+                });
 
-                    if (movElegidoSelectorDialog != null)
-                    {
-                        //codProd.setAdapter(null);
-                        codProd.setText(movElegidoSelectorDialog.getCodart());
-                        descripcion.setText(movElegidoSelectorDialog.getDenominaci());
-                        uds.setText(Double.toString(movElegidoSelectorDialog.getUnidades()));
-                        desbloquearViews();
-                    }
-                }
-            });
-            builder.setNegativeButton("Cancel", (DialogInterface dialog, int which) ->
-            {
-                elegidoSelectorDialog = -1;
-            });
+                AlertDialog dialogMostrar = builder.create();
+                dialogMostrar.setOnShowListener((DialogInterface dialogInterface) ->
+                {
+                    Button posButton = ((AlertDialog) dialogInterface).getButton(DialogInterface.BUTTON_POSITIVE);
 
-            AlertDialog dialogMostrar = builder.create();
-            dialogMostrar.setOnShowListener((DialogInterface dialogInterface) ->
-            {
-                Button posButton = ((AlertDialog) dialogInterface).getButton(DialogInterface.BUTTON_POSITIVE);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+                            (
+                                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                            );
+                    params.setMargins(8,0,0,0);
+                    posButton.setLayoutParams(params);
+                });
 
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-                        (
-                                LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                        );
-                params.setMargins(8,0,0,0);
-                posButton.setLayoutParams(params);
-            });
-
-            dialogMostrar.show();
+                dialogMostrar.show();
+            }
         }
     }
 }
