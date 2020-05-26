@@ -137,42 +137,37 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir)
             {
-                int position = viewHolder.getAdapterPosition();
-                Movimiento movAux = movAlbaran.get(position);
+                boolean eliminar = false;
 
-                if (movAux.getMoproviene() != null)
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
+                dialog.setTitle("¿Desea eliminar el movimiento?");
+                dialog.setCancelable(false);
+
+                dialog.setPositiveButton("Sí", (DialogInterface dialogInterface, int which) ->
                 {
-                    if (movAux.getMoproviene().trim().compareTo("") != 0)
-                    {
-                        if (movAux.getUnidades() < movAux.getUnidadesOrigen())
-                        {
-                            boolean encontrado = false;
-                            for (Movimiento movLista: movPdtes)
-                            {
-                                if (movAux.getPosicion() == movLista.getPosicion())
-                                {
-                                     encontrado = true;
-                                     movLista.setIncorporad(movLista.getIncorporad() - movAux.getUnidades());
-                                }
-                            }
+                    eliminarMovimiento(viewHolder.getAdapterPosition());
+                });
+                dialog.setNegativeButton("No", (DialogInterface dialogInterface, int which) ->
+                {
+                    adaptadorCreados.notifyItemChanged(viewHolder.getAdapterPosition());
+                });
 
-                            if (!encontrado)
-                            {
-                                movAux.setUnidades(movAux.getUnidadesOrigen());
-                                movPdtes.add(movAux);
-                            }
-                        }
-                        else
-                        {
-                            movAux.setUnidades(movAux.getUnidadesOrigen());
-                            movPdtes.add(movAux);
-                        }
-                    }
-                }
+                AlertDialog dialogMostrar = dialog.create();
+                dialogMostrar.setOnShowListener((DialogInterface dialogInterface) ->
+                {
+                    Button posButton = ((AlertDialog) dialogInterface).getButton(DialogInterface.BUTTON_POSITIVE);
 
-                movAlbaran.remove(position);
-                adaptadorCreados.setArray(movAlbaran);
-                adaptadorCreados.notifyDataSetChanged();
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+                            (
+                                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                            );
+                    params.setMargins(8,0,0,0);
+                    posButton.setLayoutParams(params);
+                });
+                dialogMostrar.show();
+
+
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
@@ -248,6 +243,45 @@ public class EntradasFragment extends Fragment implements View.OnClickListener {
                 aceptarOperacion();
                 break;
         }
+    }
+
+    private void eliminarMovimiento(int position)
+    {
+        Movimiento movAux = movAlbaran.get(position);
+
+        if (movAux.getMoproviene() != null)
+        {
+            if (movAux.getMoproviene().trim().compareTo("") != 0)
+            {
+                if (movAux.getUnidades() < movAux.getUnidadesOrigen())
+                {
+                    boolean encontrado = false;
+                    for (Movimiento movLista: movPdtes)
+                    {
+                        if (movAux.getPosicion() == movLista.getPosicion())
+                        {
+                            encontrado = true;
+                            movLista.setIncorporad(movLista.getIncorporad() - movAux.getUnidades());
+                        }
+                    }
+
+                    if (!encontrado)
+                    {
+                        movAux.setUnidades(movAux.getUnidadesOrigen());
+                        movPdtes.add(movAux);
+                    }
+                }
+                else
+                {
+                    movAux.setUnidades(movAux.getUnidadesOrigen());
+                    movPdtes.add(movAux);
+                }
+            }
+        }
+
+        movAlbaran.remove(position);
+        adaptadorCreados.setArray(movAlbaran);
+        adaptadorCreados.notifyDataSetChanged();
     }
 
     private void pedirOrigen()

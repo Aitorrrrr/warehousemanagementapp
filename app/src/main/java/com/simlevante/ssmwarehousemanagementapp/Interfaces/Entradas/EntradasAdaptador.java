@@ -72,6 +72,10 @@ public class EntradasAdaptador extends RecyclerView.Adapter<EntradasAdaptador.En
             {
                 holder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.amarilloBebe, null));
             }
+            else
+            {
+                holder.cv.setCardBackgroundColor(context.getResources().getColor(R.color.blanco, null));
+            }
         }
     }
 

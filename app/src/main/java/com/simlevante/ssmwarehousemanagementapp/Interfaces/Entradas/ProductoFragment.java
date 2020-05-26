@@ -247,7 +247,7 @@ public class ProductoFragment extends Fragment implements View.OnClickListener {
         if ((movAux.getUnidades() - movAux.getIncorporad()) < Double.valueOf(incorp.getText().toString()))
         {
             AlertDialog.Builder dialogMovs = new AlertDialog.Builder(getContext());
-            dialogMovs.setTitle("Unidades incorporadas mayores que las unidades origen. ¿Desea generar 2 movimientos?");
+            dialogMovs.setTitle("Las unidades exceden el origen. ¿Generar 2 movimientos?");
             dialogMovs.setCancelable(false);
 
             dialogMovs.setPositiveButton("Sí", (DialogInterface dialog, int which) ->
